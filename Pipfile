@@ -9,6 +9,7 @@ sqlalchemy = "*"
 pydantic-settings = "*"
 python-dotenv = "*"
 orjson = "*"
+dependency-injector = "*"
 
 [dev-packages]
 
