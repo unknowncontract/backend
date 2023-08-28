@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from .routes.route import router
+from src.routes import image
 
 app = FastAPI()
 
-app.include_router(router=router)
+app.include_router(image.router)
 
 
 @app.get("/")
