@@ -10,6 +10,7 @@ pydantic-settings = "*"
 python-dotenv = "*"
 orjson = "*"
 dependency-injector = "*"
+openai = "*"
 
 [dev-packages]
 
