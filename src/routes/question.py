@@ -5,7 +5,10 @@ from src.core.container import Container
 from src.dto.question import QuestionBody, QuestionRes
 from src.services.question_service import QuestionService
 
-router = APIRouter(prefix="/question")
+router = APIRouter(
+    prefix="/question",
+    tags=["question"],
+)
 
 
 @router.post("", response_model=QuestionRes)
