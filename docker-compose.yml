@@ -1,0 +1,21 @@
+version: "3"
+services:
+  server:
+    container_name: backend
+    image: eatcocoa/unknown-contract-backend:latest
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - backend
+    ports:
+      - "8000:80"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: "700M"
+
+networks:
+  backend:
+    driver: bridge
