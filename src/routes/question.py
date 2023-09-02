@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.post("/parse", response_model=QuestionRes)
+@router.post("/", response_model=QuestionRes)
 @inject
 async def parse(
     question: QuestionBody,
