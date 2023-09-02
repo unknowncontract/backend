@@ -1,6 +1,6 @@
 from src.services.openai_service import OpenaiService
 from src.constants.prompt import *
-from src.constants.warn import building
+from src.constants.warn import building, owner
 from src.dto.question import QuestionRes
 
 
@@ -15,6 +15,15 @@ class QuestionService:
 
     async def owner(self, data: str):
         parse = await self.openai_service.parse(prompt_owner, data)
+
+        result = []
+        self.validate_nested(parse, list(owner.keys()), result)
+
+        return {
+            "type": "owner",
+            "score": ((len(owner) - len(result)) / len(owner)) * 100,
+            "warnings": {key: owner[key] for key in result},
+        }
 
     async def building(self, data: str) -> QuestionRes:
         parse = await self.openai_service.parse(prompt_building, data)

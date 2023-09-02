@@ -22,11 +22,7 @@ _default_prompt = """
 #     필드 목록:
 # """
 
-prompt_owner = (
-    _default_prompt
-    + """
-    """
-)
+prompt_owner = _default_prompt
 
 prompt_building = _default_prompt
 
