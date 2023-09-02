@@ -60,5 +60,6 @@ class OpenaiService:
         )
 
         message = response["choices"][0]["message"]["content"]
+        print(message)
 
         return json.loads(message)

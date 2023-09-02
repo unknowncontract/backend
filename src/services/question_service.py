@@ -1,7 +1,8 @@
 from src.services.openai_service import OpenaiService
 from src.constants.prompt import *
-from src.constants.warn import building, owner
+from src.constants.warn import building, owner, contract
 from src.dto.question import QuestionRes
+import json
 
 
 class QuestionService:
@@ -21,7 +22,7 @@ class QuestionService:
 
         return {
             "type": "owner",
-            "score": ((len(owner) - len(result)) / len(owner)) * 100,
+            "score": round(((len(owner) - len(result)) / len(owner)) * 100),
             "warnings": [{"name": key, "description": owner[key]} for key in result],
         }
 
@@ -33,14 +34,21 @@ class QuestionService:
 
         return {
             "type": "building",
-            "score": ((len(building) - len(result)) / len(building)) * 100,
+            "score": round(((len(building) - len(result)) / len(building)) * 100),
             "warnings": [{"name": key, "description": building[key]} for key in result],
         }
 
     async def contract(self, data: str):
         data = await self.openai_service.message(prompt_contract, data)
+        toJson = json.loads(data)
 
-        print(data)
+        return {
+            "type": "contract",
+            "score": round(
+                ((len(contract) - len(toJson["특약사항"])) / len(contract)) * 100
+            ),
+            "warnings": [{"name": key, "description": key} for key in toJson["특약사항"]],
+        }
 
     def validate_nested(self, data, warn_list: list[str], result: list[str]):
         if isinstance(data, str):
