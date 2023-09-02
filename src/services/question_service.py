@@ -47,7 +47,10 @@ class QuestionService:
             "score": round(
                 ((len(contract) - len(toJson["특약사항"])) / len(contract)) * 100
             ),
-            "warnings": [{"name": key, "description": key} for key in toJson["특약사항"]],
+            "warnings": [
+                {"name": str(idx), "description": key}
+                for idx, key in enumerate(toJson["특약사항"])
+            ],
         }
 
     def validate_nested(self, data, warn_list: list[str], result: list[str]):
