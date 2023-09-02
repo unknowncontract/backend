@@ -15,7 +15,7 @@ router = APIRouter(
 
 @router.post("/", response_model=QuestionRes)
 @inject
-async def parse(
+async def question(
     question: QuestionBody,
     service: QuestionService = Depends(Provide[Container.question_service]),
 ):
