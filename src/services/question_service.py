@@ -48,7 +48,7 @@ class QuestionService:
                 ((len(contract) - len(toJson["특약사항"])) / len(contract)) * 100
             ),
             "warnings": [
-                {"name": str(idx), "description": key}
+                {"name": str(idx) + "번 문제사항", "description": key}
                 for idx, key in enumerate(toJson["특약사항"])
             ],
         }
