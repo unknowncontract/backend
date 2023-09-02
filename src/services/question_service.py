@@ -22,7 +22,7 @@ class QuestionService:
         return {
             "type": "owner",
             "score": ((len(owner) - len(result)) / len(owner)) * 100,
-            "warnings": {key: owner[key] for key in result},
+            "warnings": [{"name": key, "description": owner[key]} for key in result],
         }
 
     async def building(self, data: str) -> QuestionRes:
@@ -34,7 +34,7 @@ class QuestionService:
         return {
             "type": "building",
             "score": ((len(building) - len(result)) / len(building)) * 100,
-            "warnings": {key: building[key] for key in result},
+            "warnings": [{"name": key, "description": building[key]} for key in result],
         }
 
     async def contract(self, data: str):

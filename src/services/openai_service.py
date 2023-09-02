@@ -34,14 +34,6 @@ class OpenaiService:
             api_key=config.openai_secret_key,
             model="gpt-3.5-turbo",
             messages=[
-                {
-                    "role": "system",
-                    "content": "You are a friendly assistant. Your answers are JSON only.",
-                },
-                {
-                    "role": "assistant",
-                    "content": '{"message": "Understood. I will output my answers in JSON format." }',
-                },
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": text},
             ],
