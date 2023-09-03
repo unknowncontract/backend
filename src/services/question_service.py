@@ -42,11 +42,13 @@ class QuestionService:
         data = await self.openai_service.message(prompt_contract, data)
         toJson = json.loads(data)
 
+        comparison = len(contract) - len(toJson["특약사항"])
+        if comparison<=0: score = 0
+        else: score = round(((comparison) / len(contract)) * 100)
+
         return {
             "type": "contract",
-            "score": round(
-                ((len(contract) - len(toJson["특약사항"])) / len(contract)) * 100
-            ),
+            "score": score,
             "warnings": [
                 {"name": str(idx) + "번 문제사항", "description": key}
                 for idx, key in enumerate(toJson["특약사항"])
