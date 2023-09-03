@@ -52,7 +52,7 @@ class QuestionService:
             "type": "contract",
             "score": score,
             "warnings": [
-                {"name": str(idx) + "번 문제사항", "description": key}
+                {"name": str(idx + 1) + "번 문제사항", "description": key}
                 for idx, key in enumerate(toJson["특약사항"])
             ],
         }
