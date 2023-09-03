@@ -43,8 +43,10 @@ class QuestionService:
         toJson = json.loads(data)
 
         comparison = len(contract) - len(toJson["특약사항"])
-        if comparison<=0: score = 0
-        else: score = round(((comparison) / len(contract)) * 100)
+        if comparison <= 0:
+            score = 0
+        else:
+            score = round(((comparison) / len(contract)) * 100)
 
         return {
             "type": "contract",
@@ -57,8 +59,9 @@ class QuestionService:
 
     def validate_nested(self, data, warn_list: list[str], result: list[str]):
         if isinstance(data, str):
-            if data in warn_list:
-                result.append(data)
+            for v in warn_list:
+                if v in data:
+                    result.append(v)
             return
 
         if isinstance(data, dict):
